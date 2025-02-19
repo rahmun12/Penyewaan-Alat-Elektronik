@@ -11,6 +11,7 @@ import { Penyewaan } from "@/types/penyewaan";
 export default function EditSewaAlatAdmin() {
   const [formData, setFormData] = useState<Penyewaan>({
     id: 0,
+    alat_nama: "",
     pelanggan_id: 0,
     penyewaan_tglsewa: new Date(),
     penyewaan_tglkembali: new Date(),

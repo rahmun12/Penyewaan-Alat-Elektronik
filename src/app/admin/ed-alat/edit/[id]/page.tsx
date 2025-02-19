@@ -9,6 +9,7 @@ import { useGetAlat } from "@/dataservices/Alat/api";
 import { getBaseQuery } from "@/init/baseQuery";
 import { useGetKategori } from "@/dataservices/kategori/api";
 import { GetKategoriResponse } from "@/dataservices/kategori/type";
+import { AnyDataTag } from "@tanstack/react-query";
 
 export default function EditAlat() {
   const router = useRouter();
@@ -70,7 +71,7 @@ export default function EditAlat() {
   useEffect(() => {
     if (kategoriData) {
       const options = kategoriData.data.map((kategori) => ({
-        value: kategori.id,
+        value: kategori.id.toString(),
         label: kategori.kategori_nama,
       }));
       setKategoriOptions(options);
@@ -87,7 +88,7 @@ export default function EditAlat() {
     console.log(formData);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 

@@ -18,14 +18,16 @@ import {
 import { useGetAlat } from "@/dataservices/Alat/api";
 
 export default function TambahAlat() {
-  const [formData, setFormData] = useState({
-    alat_nama: "",
-    alat_hargaperhari: "",
-    alat_stok: "",
-    alat_deskripsi: "",
-    kategori_id: "",
-    alat_gambar: "",
-  });
+  const [formData, setFormData] = useState<
+    {
+      alat_nama: string;
+      alat_hargaperhari: string;
+      alat_stok: string;
+      alat_deskripsi: string;
+      kategori_id: string;
+      alat_gambar: string;
+    }[]
+  >([]);
 
   const [loading, setLoading] = useState(false);
   const [alatGambar, setAlatGambar] = useState<File | null>(null);
@@ -49,7 +51,7 @@ export default function TambahAlat() {
     data: alatData,
     isLoading: isLoadingAlat,
     isError: isErrorAlat,
-  } = useGetAlat<GetAllAlatResponse>("/v1/alat");
+  } = useGetAlat<GetAllAlatResponse>("/v1/alat", 1);
 
   useEffect(() => {
     if (kategoriData) {
