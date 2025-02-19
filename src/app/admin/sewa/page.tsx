@@ -15,7 +15,7 @@ export default function SewaAlatAdmin() {
   const router = useRouter();
 
   const { data, error, isLoading } = useGetPenyewaan<GetAllPenyewaanResponse>(
-    "/v1/penyewaan",
+    "/api/v1/penyewaan",
     1
   );
 

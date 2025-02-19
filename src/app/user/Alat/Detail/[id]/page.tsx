@@ -13,7 +13,7 @@ export default function AlatDetail() {
   const { id } = useParams();
   const [alatDetailData, setAlatDetailData] = useState<Alat>();
   const { data, isLoading, isError } = useGetAlat<GetAlatResponse>(
-    `/v1/alat/${id}`,
+    `/api/v1/alat/${id}`,
     1
   );
   const router = useRouter();

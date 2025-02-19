@@ -17,7 +17,7 @@ export default function Portal({ onToggle, isOpen }: PortalProps) {
 
   // Menggunakan hook untuk mendapatkan data kategori
   const { data, isLoading, isError } = useGetKategori<GetKategoriResponse>(
-    "/v1/kategori",
+    "/api/v1/kategori",
     1
   );
 

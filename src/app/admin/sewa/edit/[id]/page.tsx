@@ -19,6 +19,7 @@ export default function EditSewaAlatAdmin() {
     penyewaan_sttskembali: "",
     penyewaan_totalharga: 0,
   });
+
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const params = useParams();
@@ -26,12 +27,12 @@ export default function EditSewaAlatAdmin() {
 
   // Ambil data penyewaan berdasarkan ID saat pertama kali load
   const { data, error, isLoading } = useGetPenyewaan<GetPenyewaanResponse>(
-    `/v1/penyewaan/${id}`,
+    `/api/v1/penyewaan/${id}`,
     1
   );
 
   useEffect(() => {
-    if (data && data.data) {
+    if (data?.data) {
       setFormData(data.data);
       setLoading(false);
     }
@@ -46,13 +47,24 @@ export default function EditSewaAlatAdmin() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "pelanggan_id" || name === "penyewaan_totalharga" ? parseInt(value) || 0 : value,
+    }));
   };
 
   // Handle submit form
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!id) return alert("ID tidak valid!");
+
+    // Pastikan format tanggal benar
+    const formattedData = {
+      ...formData,
+      penyewaan_tglsewa: new Date(formData.penyewaan_tglsewa).toISOString().split("T")[0],
+      penyewaan_tglkembali: new Date(formData.penyewaan_tglkembali).toISOString().split("T")[0],
+    };
 
     try {
       const response = await fetch(
@@ -63,11 +75,14 @@ export default function EditSewaAlatAdmin() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(formattedData),
         }
       );
 
-      if (!response.ok) throw new Error("Gagal mengupdate penyewaan");
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Gagal mengupdate penyewaan: ${errorMessage}`);
+      }
 
       alert("Penyewaan berhasil diperbarui");
       router.push("/admin/sewa");
@@ -98,6 +113,7 @@ export default function EditSewaAlatAdmin() {
         <Label>Pelanggan ID</Label>
         <TextInput
           name="pelanggan_id"
+          type="number"
           value={formData.pelanggan_id}
           onChange={handleChange}
           required
@@ -107,7 +123,7 @@ export default function EditSewaAlatAdmin() {
         <TextInput
           type="date"
           name="penyewaan_tglsewa"
-          value={formData.penyewaan_tglsewa.toString()}
+          value={new Date(formData.penyewaan_tglsewa).toISOString().split("T")[0]}
           onChange={handleChange}
           required
         />
@@ -116,7 +132,7 @@ export default function EditSewaAlatAdmin() {
         <TextInput
           type="date"
           name="penyewaan_tglkembali"
-          value={formData.penyewaan_tglkembali.toString()}
+          value={new Date(formData.penyewaan_tglkembali).toISOString().split("T")[0]}
           onChange={handleChange}
           required
         />

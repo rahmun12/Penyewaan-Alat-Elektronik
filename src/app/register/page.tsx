@@ -23,7 +23,7 @@ export default function Register() {
     async (data: RegisterPayload) => {
       try {
         const response = await axios.post(
-          "https://finalprojectburi.aran8276.site/api/auth/register",
+          "https://finalproject.agungkristd.site/api/auth/register",
           data
         );
 

@@ -23,7 +23,7 @@ export default function EditPelangganAlatAdmin() {
 
   // Ambil data penyewaan berdasarkan ID saat pertama kali load
   const { data, error, isLoading } = useGetPelanggan<GetPelangganResponse>(
-    `/v1/pelanggan/${id}`,
+    `/api/v1/pelanggan/${id}`,
     1
   );
 

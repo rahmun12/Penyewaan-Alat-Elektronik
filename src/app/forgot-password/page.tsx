@@ -37,7 +37,7 @@ export default function ForgotPassword() {
 
     try {
       const response = await axios.post(
-        "https://finalprojectburi.aran8276.site/api/auth/passnew",
+        "https://finalproject.agungkristd.site/api/auth/passnew",
         { email, new_password }
       );
       if (response.data) {

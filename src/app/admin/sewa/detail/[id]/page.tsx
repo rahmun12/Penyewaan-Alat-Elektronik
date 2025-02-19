@@ -17,7 +17,7 @@ export default function PenyewaanDetail() {
   console.log("ID dari URL:", id);
 
   const { data, error, isLoading } = useGetPenyewaan<GetPenyewaanResponse>(
-    `/v1/penyewaan/${id}`,
+    `/api/v1/penyewaan/${id}`,
     1
   );
 

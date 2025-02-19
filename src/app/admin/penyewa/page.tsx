@@ -19,7 +19,7 @@ export default function PelangganAlatAdmin() {
   const router = useRouter();
 
   const { data, error, isLoading } = useGetPelanggan<GetAllPelangganResponse>(
-    "/v1/pelanggan",
+    "/api/v1/pelanggan",
     1
   );
 
