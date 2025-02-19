@@ -39,7 +39,7 @@ export default function PelangganAlatAdmin() {
     if (!confirm("Apakah Anda yakin ingin menghapus pelanggan ini?")) return;
 
     try {
-      const response = await getBaseQuery(`/v1/pelanggan/${id}`, {
+      const response = await getBaseQuery(`/api/v1/pelanggan/${id}`, {
         method: "DELETE",
       });
 

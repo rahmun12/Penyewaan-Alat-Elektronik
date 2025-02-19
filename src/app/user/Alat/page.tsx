@@ -21,7 +21,7 @@ export default function AlatList() {
     "bg-pink-200",
   ];
   const { data, isLoading, isError } = useGetAlat<GetAllAlatResponse>(
-    "/v1/alat",
+    "/api/v1/alat",
     1
   );
 
@@ -92,7 +92,7 @@ export default function AlatList() {
             >
               <figure className="px-10 pt-10">
                 <img
-                  src={`https://finalprojectburi.aran8276.site/storage/${alat.alat_gambar}`}
+                  src={`${process.env.NEXT_PUBLIC_API_URL}/storage/${alat.alat_gambar}`}
                   alt={alat.alat_nama}
                   className="rounded-xl w-full h-60 object-cover"
                 />

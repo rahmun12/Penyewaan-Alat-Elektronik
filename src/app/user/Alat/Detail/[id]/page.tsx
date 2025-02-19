@@ -43,7 +43,7 @@ export default function AlatDetail() {
         >
           <figure>
             <motion.img
-              src={`https://finalprojectburi.aran8276.site/storage/${alatDetailData.alat_gambar}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/storage/${alatDetailData.alat_gambar}`}
               className="w-full h-full md:w-[40rem] object-cover pl-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

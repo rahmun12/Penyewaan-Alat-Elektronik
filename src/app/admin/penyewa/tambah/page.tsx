@@ -26,7 +26,7 @@ export default function TambahPelanggan() {
     setLoading(true);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/v1/pelanggan`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/pelanggan`,
         {
           method: "POST",
           headers: {

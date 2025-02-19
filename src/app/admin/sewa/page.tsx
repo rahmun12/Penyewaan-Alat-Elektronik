@@ -35,7 +35,7 @@ export default function SewaAlatAdmin() {
     if (!confirm("Apakah Anda yakin ingin menghapus penyewaan ini?")) return;
 
     try {
-      const response = await getBaseQuery(`/v1/penyewaan/${id}`, {
+      const response = await getBaseQuery(`/api/v1/penyewaan/${id}`, {
         method: "DELETE",
       });
 

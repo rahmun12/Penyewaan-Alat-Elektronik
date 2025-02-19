@@ -16,7 +16,7 @@ export default function AlatAdmin() {
   const router = useRouter();
 
   const { data, error, isLoading } = useGetAlat<GetAllAlatResponse>(
-    "/v1/alat",
+    "/api/v1/alat",
     1
   );
   console.log(data);
@@ -35,7 +35,7 @@ export default function AlatAdmin() {
     if (!confirm("Apakah Anda yakin ingin menghapus alat ini?")) return;
 
     try {
-      const response = await getBaseQuery(`/v1/alat/${id}`, {
+      const response = await getBaseQuery(`/api/v1/alat/${id}`, {
         method: "DELETE",
       });
 
@@ -88,7 +88,7 @@ export default function AlatAdmin() {
                 className="bg-white shadow-xl rounded-lg p-4 hover:shadow-xl transition"
               >
                 <img
-                  src={`https://finalprojectburi.aran8276.site/storage/${alat.alat_gambar}`}
+                  src={`${process.env.NEXT_PUBLIC_API_URL}/storage/${alat.alat_gambar}`}
                   alt={alat.alat_nama || "Gambar tidak tersedia"}
                   className="w-full h-72 object-cover rounded mb-4"
                 />

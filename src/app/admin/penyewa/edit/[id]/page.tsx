@@ -53,7 +53,7 @@ export default function EditPelangganAlatAdmin() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/v1/pelanggan/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/pelanggan/${id}`,
         {
           method: "PUT",
           headers: {

@@ -45,16 +45,17 @@ export default function TambahAlat() {
     data: kategoriData,
     isLoading,
     isError,
-  } = useGetKategori<GetKategoriResponse>("/v1/kategori", 1);
+  } = useGetKategori<GetKategoriResponse>("/api/v1/kategori", 1);
 
   const {
     data: alatData,
     isLoading: isLoadingAlat,
     isError: isErrorAlat,
-  } = useGetAlat<GetAllAlatResponse>("/v1/alat", 1);
+  } = useGetAlat<GetAllAlatResponse>("/api/v1/alat", 1);
 
   useEffect(() => {
     if (kategoriData) {
+      console.log(kategoriData);
       const options = kategoriData.data.map((kategori) => ({
         value: kategori.id.toString(),
         label: kategori.kategori_nama,
@@ -70,16 +71,19 @@ export default function TambahAlat() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/alat`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-        Accept: "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/alat`,
+      {
+        method: "POST",
+        headers: {
+          // z
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -120,6 +124,19 @@ export default function TambahAlat() {
           className="max-w-lg mx-auto bg-white p-6 rounded-lg"
           onSubmit={handleSubmit}
         >
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Kategori
+            </label>
+            <select name="kategori_id" onChange={handleChange}>
+              <option>Pilih kategori</option>
+              {kategoriOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className="mb-4">
             <Label>Masukan Nama</Label>
             <TextInput name="alat_nama" onChange={handleChange} required />
@@ -149,7 +166,7 @@ export default function TambahAlat() {
             />
           </div>
           <FileInput
-            accept="image/*"
+            name="alat_gambar"
             onChange={(e) => {
               if (e.target.files && e.target.files.length > 0) {
                 setAlatGambar(e.target.files[0]);

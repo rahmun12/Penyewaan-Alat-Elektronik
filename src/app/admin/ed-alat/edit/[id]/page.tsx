@@ -35,7 +35,7 @@ export default function EditAlat() {
     if (id) {
       const fetchAlatData = async () => {
         try {
-          const response = await getBaseQuery(`/v1/alat/${id}`);
+          const response = await getBaseQuery(`/api/v1/alat/${id}`);
           if (response.success) {
             setAlat(response.data);
             setFormData({
@@ -66,7 +66,7 @@ export default function EditAlat() {
     data: kategoriData,
     isLoading,
     isError,
-  } = useGetKategori<GetKategoriResponse>("/v1/kategori", 1);
+  } = useGetKategori<GetKategoriResponse>("/api/v1/kategori", 1);
 
   useEffect(() => {
     if (kategoriData) {
@@ -112,26 +112,21 @@ export default function EditAlat() {
       formDataToSend.append("alat_deskripsi", formData.alat_deskripsi);
       formDataToSend.append("kategori_id", formData.kategori_id);
       if (alatGambar) {
-        formDataToSend.append("alat_foto", alatGambar);
+        formDataToSend.append("alat_gambar", alatGambar);
       }
 
-      // Debugging FormData
-      formDataToSend.forEach((value, key) => {
-        console.log(key + ": " + value);
-      });
-
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/v1/alat/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/alat/${id}?_method=put`,
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             // z
-            "Content-Type": "application/json",
+            // "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
             Accept: "application/json",
           },
-          // body: formDataToSend,
-          body: JSON.stringify(formData),
+          body: formDataToSend,
+          // body: JSON.stringify(formData),
         }
       );
 

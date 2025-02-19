@@ -24,7 +24,7 @@ export default function Login() {
     async (data: LoginPayload) => {
       try {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
           {
             email: data.email,
             password: data.password,
