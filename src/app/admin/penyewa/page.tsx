@@ -73,6 +73,7 @@ export default function PelangganAlatAdmin() {
 
       <div className="mb-6 flex justify-end">
         <Button
+          name="tambah"
           className="bg-gradient-to-r from-green-400 to-green-400 hover:from-green-600 hover:to-green-600 text-white"
           onClick={() => router.push("/admin/penyewa/tambah")}
         >
@@ -115,6 +116,7 @@ export default function PelangganAlatAdmin() {
                 </Table.Cell>
                 <Table.Cell className="flex gap-2">
                   <Button
+                    name="edit"
                     className="bg-gradient-to-r from-yellow-300 to-yellow-300 hover:from-yellow-400 hover:to-yellow-400 text-white"
                     onClick={() =>
                       router.push(`/admin/penyewa/edit/${pelanggan.id}`)

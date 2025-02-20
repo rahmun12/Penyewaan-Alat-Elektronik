@@ -72,6 +72,7 @@ export default function AlatAdmin() {
             onChange={(e) => setSearch(e.target.value)}
           />
           <Button
+            name="tambah-alat"
             onClick={() => router.push("/admin/ed-alat/tambah")}
             className="border-2 h-10 bg-gradient-to-r from-emerald-400 to-emerald-400 hover:from-emerald-600 hover:to-emerald-600 flex items-center gap-2 px-3 py-2 rounded-lg text-sm"
           >
@@ -107,6 +108,7 @@ export default function AlatAdmin() {
                 </p>
                 <div className="flex justify-between items-center mt-8">
                   <Button
+                    name="edit-alat"
                     onClick={() =>
                       router.push(`/admin/ed-alat/edit/${alat.id}`)
                     }

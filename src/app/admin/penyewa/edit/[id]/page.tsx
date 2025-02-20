@@ -99,7 +99,7 @@ export default function EditPelangganAlatAdmin() {
           onChange={handleChange}
           required
         />
-
+        <div className="mt-1"></div>
         <Label>Pelanggan Alamat</Label>
         <TextInput
           name="pelanggan_alamat"
@@ -107,7 +107,7 @@ export default function EditPelangganAlatAdmin() {
           onChange={handleChange}
           required
         />
-
+        <div className="mt-1"></div>
         <Label>Pelanggan Email</Label>
         <TextInput
           name="pelanggan_email"
@@ -115,6 +115,8 @@ export default function EditPelangganAlatAdmin() {
           onChange={handleChange}
           required
         />
+        
+        <div className="mt-1"></div>
         <Label>Pelanggan No TELP</Label>
         <TextInput
           name="pelanggan_notelp"

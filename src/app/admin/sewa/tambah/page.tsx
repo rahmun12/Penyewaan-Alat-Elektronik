@@ -97,7 +97,7 @@ export default function TambahPenyewaan() {
           />
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <Label>Total Harga</Label>
           <TextInput
             name="penyewaan_totalharga"
@@ -105,7 +105,7 @@ export default function TambahPenyewaan() {
             onChange={handleChange}
             required
           />
-        </div>
+        </div> */}
 
         <div className="mb-4">
           <Label>Status Pembayaran</Label>

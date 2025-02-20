@@ -60,7 +60,7 @@ export default function SewaAlatAdmin() {
   }
 
   return (
-    <div className="container mx-auto p-6 rounded-lg mb-20 pt-32">
+    <div className="container mx-auto p-6 rounded-lg mb-24 pt-32">
       <motion.h1
         className="text-4xl font-extrabold text-center text-gray-800 mb-10"
         initial={{ opacity: 0, y: -20 }}
@@ -72,6 +72,7 @@ export default function SewaAlatAdmin() {
 
       <div className="mb-6 flex justify-end">
         <Button
+          name="tambah"
           className="bg-gradient-to-r from-green-400 to-green-400 hover:from-green-600 hover:to-green-600 text-white"
           onClick={() => router.push("/admin/sewa/tambah")}
         >
@@ -126,6 +127,7 @@ export default function SewaAlatAdmin() {
                 </Table.Cell>
                 <Table.Cell className="flex gap-2">
                   <Button
+                    name="detail"
                     className="bg-gradient-to-r from-blue-500 to-blue-500 hover:from-blue-600 hover:to-blue-600 text-white"
                     onClick={() =>
                       router.push(`/admin/sewa/detail/${penyewaan.id}`)
@@ -134,6 +136,7 @@ export default function SewaAlatAdmin() {
                     🔍 Lihat Detail
                   </Button>
                   <Button
+                    name="edit"
                     className="bg-gradient-to-r from-yellow-300 to-yellow-300 hover:from-yellow-400 hover:to-yellow-400 text-white"
                     onClick={() =>
                       router.push(`/admin/sewa/edit/${penyewaan.id}`)
